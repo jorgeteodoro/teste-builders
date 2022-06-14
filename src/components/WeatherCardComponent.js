@@ -11,7 +11,6 @@ const WeatherCardComponent = ({weatherData, event}) => (
         </div>
         ): (<div></div>)
       }
-     
       <div>
         <p className="day">Vento: {weatherData?.wind?.speed}</p>
       </div>
