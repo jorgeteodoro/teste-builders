@@ -35,7 +35,7 @@ export default function PrevisaoTempo() {
         getData();
       }
      
-}, [])
+}, [latitude,longitude])
 // useEffect(() => {
 //   if (latitude && longitude) {
 //     getData();
