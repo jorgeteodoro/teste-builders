@@ -7,6 +7,7 @@ export default function PrevisaoTempo() {
  
   const [latitude, setLatitude] = useState([]);
   const [longitude, setLongitude] = useState([]);
+  const [timeStamp, setTimeStamp] = useState([]);
   const [data, setData] = useState([]);
 
   const getData = async() => { 
@@ -23,6 +24,7 @@ export default function PrevisaoTempo() {
         console.log(pos);
         setLatitude(pos.coords.latitude);
         setLongitude(pos.coords.longitude);
+        setTimeStamp(pos.timestamp)
       });
     }
   }
@@ -31,11 +33,11 @@ export default function PrevisaoTempo() {
    
       getLocation();
       
-      if (latitude && longitude) {
+      if (data) {
         getData();
       }
      
-}, [latitude,longitude])
+}, [data])
 // useEffect(() => {
 //   if (latitude && longitude) {
 //     getData();
@@ -45,7 +47,7 @@ export default function PrevisaoTempo() {
 return (
   <div className="App">
     {data ? (
-      <WeatherCardComponent weatherData={data} event={getLocation}/>
+      <WeatherCardComponent weatherData={data} event={getData}/>
     ): (
       <div>Não foi possível carregar os dados.</div>
     )}
