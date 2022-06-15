@@ -10,39 +10,51 @@ export default function PrevisaoTempo() {
   const [timeStamp, setTimeStamp] = useState([]);
   const [data, setData] = useState([]);
 
-  const getData = async() => { 
-    console.log('entrou dados');
-    const dataFromAxios =  await services.get(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${APIKEY}`)
-    setData(dataFromAxios.data);
-  }
+  const getData = async() => {
 
-  const getLocation =async () => {
-    
+
     if (navigator.geolocation) {
       
       navigator.geolocation.getCurrentPosition(function(pos) {
-        console.log(pos);
+        // console.log(pos);
         setLatitude(pos.coords.latitude);
         setLongitude(pos.coords.longitude);
         setTimeStamp(pos.timestamp)
       });
     }
+
+    const dataFromAxios =  await services.get(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${APIKEY}`)
+    setData(dataFromAxios.data);
   }
+
+  // const getLocation =async () => {
+    
+  //   if (navigator.geolocation) {
+      
+  //     navigator.geolocation.getCurrentPosition(function(pos) {
+  //       console.log(pos);
+  //       setLatitude(pos.coords.latitude);
+  //       setLongitude(pos.coords.longitude);
+  //       setTimeStamp(pos.timestamp)
+  //     });
+  //   }
+  // }
 
   useEffect(() => {
    
-      getLocation();
+      // getLocation();
       
-      if (data) {
+      if (latitude && longitude) {
         getData();
       }
      
-}, [data])
+}, [latitude, longitude])
+
 // useEffect(() => {
 //   if (latitude && longitude) {
 //     getData();
 //   }
-// })
+// }, [data])
 
 return (
   <div className="App">

@@ -4,6 +4,9 @@ import moment from 'moment';
 
 const WeatherCardComponent = ({weatherData, event}) => (
   <div className="main">
+    <div>
+        <p className="day">Data e Hora: {moment(weatherData?.coord.dt).format("DD/MM/YYYY HH:mm:ss")}</p>
+      </div>
       <p className="header">{weatherData?.name}</p>
       {weatherData?.weather ? (
        <div>
