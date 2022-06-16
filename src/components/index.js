@@ -23,7 +23,7 @@ export default function PrevisaoTempo() {
       });
     }
 
-    const dataFromAxios =  await services.get(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${APIKEY}`)
+    const dataFromAxios =  await services.get(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&lang=pt&appid=${APIKEY}`)
     setData(dataFromAxios.data);
   }
 
